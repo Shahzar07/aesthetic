@@ -9,54 +9,243 @@ export type Course = {
   attend: string[];
   outcomes: string[];
   faqs: { q: string; a: string }[];
+  /** Optional extended programme details (dates, pricing, venue, careers). */
+  programme?: CourseProgramme;
+};
+
+export type CourseDate = {
+  /** ISO date, e.g. "2026-11-26" — used to hide dates once they have passed. */
+  iso: string;
+  label: string;
+  note?: string;
+};
+
+export type CourseProgramme = {
+  tagline: string;
+  offer?: {
+    label: string;
+    regular: string;
+    price: string;
+    saving: string;
+    /** ISO date after which the offer is hidden. */ expires: string;
+  };
+  dates: CourseDate[];
+  venue: { name: string; lines: string[]; note?: string };
+  format: { title: string; heading: string; intro?: string; points: string[] }[];
+  careers: string[];
+  progression: string[];
+  progressionNote: string;
+  support: { title: string; detail: string }[];
+  entry: string[];
+  why: string[];
+  contact: { email: string; phone: string };
+  disclaimer: string;
 };
 
 export const courses: Course[] = [
   {
     slug: "phlebotomy-training",
     title: "Phlebotomy Training",
-    short: "Master safe, confident venepuncture with extensive supervised practical time.",
-    duration: "1 day (9:30am – 4:30pm)",
-    level: "Foundation",
-    certification: "CPD accredited certificate of attendance and competency sign-off",
+    short:
+      "A beginner-friendly 3-day blended programme — flexible online theory plus a hands-on practical day. No previous experience required.",
+    duration: "3-day blended programme (2 days online theory + 1 practical day)",
+    level: "Foundation · Beginners welcome",
+    certification:
+      "Certificate on successful completion of theory and practical competency assessments",
     overview: [
-      "Our Phlebotomy Training course builds the technical precision and patient-facing confidence required to take blood safely in clinical, community and private practice settings.",
-      "Delivered by a practising NHS healthcare professional, the day balances the underpinning theory — anatomy, tube science, governance — with extended supervised practical work on training arms and, where appropriate, peer practice.",
-      "Class sizes are deliberately small so every delegate receives individual correction and repetition until technique is consistent rather than lucky.",
+      "Are you ready to take your first step into healthcare? Whether you're completely new to healthcare or looking to expand your clinical knowledge and skills, our beginner-friendly Phlebotomy Training Programme is designed to help you build confidence and develop practical blood collection skills.",
+      "Days 1 and 2 are completed online at your own pace, with structured learning materials and interactive quizzes. Day 3 is a face-to-face, instructor-led practical day with supervised venepuncture practice and a practical skills assessment.",
+      "Training is informed by NHS clinical experience and delivered in small groups, so every learner receives individual support and guidance.",
     ],
     attend: [
-      "Registered nurses, midwives and paramedics",
-      "Healthcare assistants and support workers",
-      "Doctors, dentists and pharmacists refreshing core skills",
-      "Beauty and aesthetic practitioners moving into medical services",
-      "Career changers with no prior clinical experience (foundation route)",
+      "Complete beginners — no previous experience required",
+      "Anyone looking to take their first step into healthcare",
+      "Healthcare assistants and support workers expanding their clinical skills",
+      "Aesthetic and wellness practitioners moving into blood collection",
+      "Career changers exploring entry-level healthcare roles",
     ],
     outcomes: [
-      "Explain the anatomy of the antecubital fossa and identify suitable venepuncture sites",
-      "Apply infection prevention, aseptic non-touch technique and sharps safety",
-      "Select appropriate equipment including vacutainer, butterfly and syringe systems",
-      "Perform venepuncture using the correct order of draw and labelling protocol",
-      "Manage difficult veins, failed attempts, fainting and needle anxiety",
-      "Document, consent and escalate in line with professional standards",
+      "Anatomy and physiology of the circulatory system",
+      "Understanding veins and blood circulation",
+      "Identifying suitable venepuncture sites",
+      "Introduction to phlebotomy equipment",
+      "Blood collection tubes and additives",
+      "Correct order of draw",
+      "Infection prevention and control",
+      "Hand hygiene and personal protective equipment",
+      "Patient identification and informed consent",
+      "Preparing patients for blood collection",
+      "Safe venepuncture principles and techniques",
+      "Correct specimen collection and labelling",
+      "Sample handling and transportation",
+      "Preventing contamination and sample errors",
+      "Sharps safety and clinical waste disposal",
+      "Recognising and managing common complications",
+      "Fainting and other patient reactions",
+      "Patient aftercare and communication",
+      "Professional responsibilities and documentation",
+      "Practical competency assessment",
     ],
     faqs: [
       {
-        q: "Do I need clinical experience?",
-        a: "No. The foundation route is designed for complete beginners, while experienced clinicians can be streamed into advanced practice on the day.",
+        q: "Do I need any previous experience?",
+        a: "No. Complete beginners are welcome — no previous phlebotomy qualification or healthcare employment is required. You must be aged 18 or over and committed to completing the theory and practical assessments.",
+      },
+      {
+        q: "How is the course delivered?",
+        a: "It is a 3-day blended programme. Days 1 and 2 are flexible online theory you complete from home at your own pace. Day 3 is a face-to-face practical training day in Maidstone, Kent.",
+      },
+      {
+        q: "When are the practical training days?",
+        a: "Practical training days are Thursday 26 November 2026 and Saturday 30 January 2027, at Maidstone Community Support Centre (venue subject to final confirmation).",
+      },
+      {
+        q: "How much does the course cost?",
+        a: "The regular course fee is £199. For November 2026 we are running a limited launch offer of just £150 — a saving of £49.",
       },
       {
         q: "How much hands-on time will I get?",
-        a: "The majority of the day is practical. We cap numbers to protect one-to-one supervision.",
+        a: "The practical day is dedicated to instructor demonstration, supervised practice and your practical skills assessment, in small groups with individual support.",
       },
       {
-        q: "Is the certificate recognised?",
-        a: "You receive a CPD accredited certificate accepted by employers and insurers for UK practice.",
-      },
-      {
-        q: "Do you help with insurance?",
-        a: "Yes — we guide you through the insurers who cover newly trained phlebotomists.",
+        q: "Will this guarantee me a job?",
+        a: "Course completion does not guarantee employment or independent clinical authorisation. Employers may require further supervised practice and competency assessment — but our student career support will help you prepare your CV, applications and interviews.",
       },
     ],
+    programme: {
+      tagline: "Learn with confidence. Develop your skills. Explore your future.",
+      offer: {
+        label: "November special launch offer",
+        regular: "£199",
+        price: "£150",
+        saving: "Save £49",
+        expires: "2026-11-30",
+      },
+      dates: [
+        {
+          iso: "2026-11-26",
+          label: "Thursday 26 November 2026",
+          note: "November offer — £150",
+        },
+        {
+          iso: "2027-01-30",
+          label: "Saturday 30 January 2027",
+          note: "New date",
+        },
+      ],
+      venue: {
+        name: "Maidstone Community Support Centre",
+        lines: ["39–48 Marsham Street", "Maidstone", "Kent", "ME14 1HH"],
+        note: "Venue subject to final confirmation.",
+      },
+      format: [
+        {
+          title: "Days 1 & 2",
+          heading: "Flexible online theory",
+          intro: "Study from the comfort of your home at your own pace.",
+          points: [
+            "Structured learning materials",
+            "Interactive quizzes and knowledge assessments",
+            "Flexible study around your availability",
+            "Preparation for your practical training",
+          ],
+        },
+        {
+          title: "Day 3",
+          heading: "Hands-on practical training",
+          intro: "Face-to-face in Maidstone, Kent.",
+          points: [
+            "Face-to-face instructor-led training",
+            "Demonstration of venepuncture techniques",
+            "Supervised practical skills development",
+            "Correct handling of phlebotomy equipment",
+            "Patient communication and safety",
+            "Practical skills assessment",
+            "Small-group learning with individual support",
+          ],
+        },
+      ],
+      careers: [
+        "GP surgeries and primary care",
+        "NHS and private hospitals",
+        "Pathology and specimen collection departments",
+        "Blood collection clinics",
+        "Private medical and healthcare clinics",
+        "Community healthcare services",
+        "Occupational health services",
+        "Diagnostic and medical screening centres",
+        "Aesthetic and wellness clinics",
+        "Healthcare assistant and clinical support roles",
+        "Medical laboratories and specimen reception",
+        "Hospital theatre support roles",
+      ],
+      progression: [
+        "Advanced phlebotomy",
+        "Cannulation and vascular access training",
+        "IV therapy and infusion services",
+        "Aesthetic medicine and cosmetic treatments",
+        "Dermal fillers",
+        "Botox and other injectable treatments",
+        "PRP treatments for hair and facial rejuvenation",
+        "Hospital theatre and perioperative support",
+        "Pathology and laboratory careers",
+        "Veterinary healthcare and animal blood collection",
+        "Further clinical qualifications and professional development",
+        "Healthcare education and training opportunities",
+      ],
+      progressionNote:
+        "These are potential progression pathways. Additional qualifications, supervised experience, professional registration or prescribing arrangements may be required depending on the role or treatment.",
+      support: [
+        {
+          title: "Student Support Group",
+          detail: "Connect with fellow learners and receive ongoing guidance.",
+        },
+        {
+          title: "CV Preparation Support",
+          detail: "Learn how to create or improve your CV for healthcare applications.",
+        },
+        {
+          title: "Interview Preparation",
+          detail:
+            "Explore common healthcare interview questions and how to prepare effective answers.",
+        },
+        {
+          title: "Job Application Guidance",
+          detail: "Receive support with understanding vacancies and preparing applications.",
+        },
+        {
+          title: "Career Pathway Guidance",
+          detail: "Explore entry-level healthcare opportunities and further training options.",
+        },
+        {
+          title: "Professional Development Support",
+          detail: "Build your confidence as you plan your next steps.",
+        },
+      ],
+      entry: [
+        "Must be aged 18 or over",
+        "Complete beginners welcome",
+        "No previous phlebotomy qualification needed",
+        "No prior healthcare employment required",
+        "Commitment to completing theory and practical assessments",
+      ],
+      why: [
+        "Beginner-friendly teaching",
+        "Flexible online theory",
+        "Hands-on practical learning",
+        "Small-group attention and guidance",
+        "Training informed by NHS clinical experience",
+        "Structured learning and assessments",
+        "Additional student career support",
+        "Affordable introductory course fee",
+      ],
+      contact: {
+        email: "info@aestheticsiq.com",
+        phone: "07426 729703",
+      },
+      disclaimer:
+        "Course completion does not guarantee employment or independent clinical authorisation. Employers may require further supervised practice and competency assessment.",
+    },
   },
   {
     slug: "iv-cannulation-training",
